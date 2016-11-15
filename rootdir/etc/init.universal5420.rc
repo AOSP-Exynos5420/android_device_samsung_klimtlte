@@ -228,11 +228,6 @@ on boot
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
     
-    # Workaround for dirty flash issue MM->NG
-    mkdir /data/user_de/0/com.android.providers.telephony/files 0777 system system 
-    mkdir /data/user_de/0/com.android.providers.telephony/databases 0777 system system 
-    #write /data/user_de/0/com.android.providers.telephony/databases/HbpcdLookup.db 0
-    #chmod 666 /data/user_de/0/com.android.providers.telephony/databases/HbpcdLookup.db
 
 # Switch Device
     chown system radio /sys/class/sec/switch/otg_test
@@ -447,6 +442,19 @@ on fs
 #    chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
+
+on post-fs-data
+    # Workaround for dirty flash issue MM->NG
+    mkdir /data/user_de/0/com.android.providers.telephony/files 0777 system system 
+    mkdir /data/user_de/0/com.android.providers.telephony/databases 0777 system system 
+    
+    #fix dataconnection as libsec-ril.so use hardcoded /data/data paths
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/files /data/data/com.android.providers.telephony/files
+    symlink /data/data/com.android.providers.telephony/opname.db /data/user_de/0/com.android.providers.telephony/opname.db
+    chown system radio /data/data/com.android.providers.telephony/databases
+    chown system radio /data/data/com.android.providers.telephony/files
+    chown system radio /data/user_de/0/com.android.providers.telephony/opname.db
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
