@@ -49,6 +49,10 @@ PRODUCT_PACKAGES += \
     librilutils \
     rild
 
+# GPS Shim
+PRODUCT_PACKAGES += \
+    libdmitry
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
 
