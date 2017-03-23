@@ -41,6 +41,4 @@ PRODUCT_NAME := aosp_klimtlte
 PRODUCT_PACKAGES += \
     Launcher3 \
     OneTimeInitializer \
-    Gallery2 \
-    OpenDelta
-
+    Gallery2

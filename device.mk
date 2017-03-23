@@ -20,10 +20,10 @@ PRODUCT_PACKAGES += \
     init.baseband.rc
 
 PRODUCT_COPY_FILES += \
-    device/samsung/klimtlte/audio/audio_policy.conf:system/etc/audio_policy.conf
+    device/samsung/klimtlte/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 PRODUCT_COPY_FILES += \
-    device/samsung/klimtlte/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+    device/samsung/klimtlte/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
